@@ -21,10 +21,12 @@ class GildedRose(object):
                         if item.sell_in < 11:
                             if item.quality < 50:
                                 pass
+                                # done
                                 item.quality = item.quality + 1
                         if item.sell_in < 6:
                             if item.quality < 50:
                                 pass
+                                # done
                                 item.quality = item.quality + 1
             if item.name != "Sulfuras, Hand of Ragnaros":
                 # done
@@ -38,7 +40,9 @@ class GildedRose(object):
                                 #done
                                 item.quality = item.quality - 1
                     else:
-                        item.quality = item.quality - item.quality
+                        pass
+                        # done
+                        item.quality = 0
                 else:
                     if item.quality < 50:
                         pass
