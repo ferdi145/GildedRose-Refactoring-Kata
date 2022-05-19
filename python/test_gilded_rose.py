@@ -73,11 +73,5 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self.assertEqual(80 , items[0].quality)
 
-    def test_normal_item_with_positive_quality_looses_quality(self):
-        items = [Item("conjured", 1, 80)]
-        gilded_rose = GildedRose(items)
-        gilded_rose.update_quality()
-        self.assertEqual(80 , items[0].quality)
-
 if __name__ == '__main__':
     unittest.main()
