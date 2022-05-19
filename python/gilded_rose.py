@@ -7,47 +7,52 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
-                if item.quality > 0:
-                    if item.name != "Sulfuras, Hand of Ragnaros":
-                        pass
-                        #done
-                        item.quality = item.quality - 1
-            else:
+            if item.name == "Sulfuras, Hand of Ragnaros":
+                break
+
+            if item.name == "Aged Brie":
+                pass
                 if item.quality < 50:
-                    # done
                     item.quality = item.quality + 1
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                        if item.sell_in < 11:
-                            if item.quality < 50:
-                                pass
-                                # done
-                                item.quality = item.quality + 1
-                        if item.sell_in < 6:
-                            if item.quality < 50:
-                                pass
-                                # done
-                                item.quality = item.quality + 1
-            if item.name != "Sulfuras, Hand of Ragnaros":
-                # done
-                item.sell_in = item.sell_in - 1
-            if item.sell_in < 0:
-                if item.name != "Aged Brie":
-                    if item.name != "Backstage passes to a TAFKAL80ETC concert":
-                        if item.quality > 0:
-                            if item.name != "Sulfuras, Hand of Ragnaros":
-                                pass
-                                #done
-                                item.quality = item.quality - 1
-                    else:
-                        pass
-                        # done
-                        item.quality = 0
-                else:
+                if item.sell_in < 1:
                     if item.quality < 50:
-                        pass
-                        # done
                         item.quality = item.quality + 1
+                item.sell_in = item.sell_in - 1
+                break
+
+            if item.name == "Backstage passes to a TAFKAL80ETC concert":
+                pass
+                if item.quality < 50:
+                    item.quality = item.quality + 1
+                    if item.sell_in < 11:
+                        if item.quality < 50:
+                            item.quality = item.quality + 1
+                    if item.sell_in < 6:
+                        if item.quality < 50:
+                            item.quality = item.quality + 1
+                    if item.sell_in < 1:
+                        item.quality = 0
+                item.sell_in = item.sell_in - 1
+                break
+
+
+            if item.quality > 0:
+                pass
+                #done
+                item.quality = item.quality - 1
+
+            if self.isOverdue(item):
+                if item.quality > 0:
+                    item.quality = item.quality - 1
+          
+            item.sell_in = item.sell_in - 1
+
+    def isOverdue(self, item):
+        return item.sell_in < 1
+
+
+    def isBackstagePass(self, item):
+        return item.name == "Backstage passes to a TAFKAL80ETC concert"
 
 
 class Item:
